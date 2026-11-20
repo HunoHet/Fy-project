@@ -1,0 +1,418 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+    overscroll-behavior: none;
+  }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  background-color: #f4f4f5;
+  color: #18181b;
+}
+
+[data-theme='light'] [class~='bg-black'] {
+  background-color: #f4f4f5 !important;
+}
+
+[data-theme='light'] [class~='bg-black/80'] {
+  background-color: rgb(250 250 250 / 92%) !important;
+}
+
+[data-theme='light'] [class~='bg-black/60'] {
+  background-color: rgb(24 24 27 / 35%) !important;
+}
+
+[data-theme='light'] [class~='bg-black/50'],
+[data-theme='light'] [class~='bg-black/45'],
+[data-theme='light'] [class~='bg-black/40'],
+[data-theme='light'] [class~='bg-black/30'] {
+  background-color: rgb(24 24 27 / 10%) !important;
+}
+
+[data-theme='light'] [class~='bg-zinc-950'],
+[data-theme='light'] [class~='bg-zinc-900'],
+[data-theme='light'] [class~='bg-zinc-800'] {
+  background-color: #fff !important;
+}
+
+[data-theme='light'] [class*='bg-white/'] {
+  background-color: rgb(24 24 27 / 4%) !important;
+}
+
+[data-theme='light'] [class~='text-white'],
+[data-theme='light'] [class*='text-white/'] {
+  color: rgb(24 24 27 / 88%) !important;
+}
+
+[data-theme='light'] [class*='border-white/'] {
+  border-color: rgb(24 24 27 / 12%) !important;
+}
+
+[data-theme='light'] [class~='ring-black'] {
+  --tw-ring-color: #f4f4f5;
+}
+
+[data-theme='light'] [data-theme-content='media'] [class~='text-white'],
+[data-theme='light'] [data-theme-content='media'] [class*='text-white/'] {
+  color: #fff !important;
+}
+
+[data-theme='light'] input,
+[data-theme='light'] textarea {
+  color: #18181b;
+}
+
+/* Toast slide-in */
+@keyframes toast-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-toast-in {
+  animation: toast-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Neon pulse for in-feed */
+@keyframes neon-burst {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px rgba(74, 222, 128, 0));
+  }
+  30% {
+    transform: scale(1.5) rotate(-10deg);
+    filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.9));
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 0px rgba(74, 222, 128, 0));
+  }
+}
+.animate-neon-burst {
+  animation: neon-burst 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes in-feed-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  24% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  42% {
+    transform: scale(0.96);
+  }
+  76% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+}
+.animate-in-feed-pop {
+  animation: in-feed-pop 1.1s ease-out forwards;
+}
+
+/* Purple hype pulse */
+@keyframes hype-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
+  }
+  50% {
+    transform: scale(1.3);
+    box-shadow: 0 0 0 15px rgba(168, 85, 247, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+  }
+}
+.animate-hype-pulse {
+  animation: hype-pulse 0.6s ease-out;
+}
+
+/* Floating text for hype */
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+}
+.animate-float-up {
+  animation: float-up 1.2s ease-out forwards;
+}
+
+/* Bottom sheet slide up */
+@keyframes sheet-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.animate-sheet-up {
+  animation: sheet-up 0.35s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+@keyframes sheet-down {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+.animate-sheet-down {
+  animation: sheet-down 0.25s ease-in forwards;
+}
+
+/* Sheet backdrop fade */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out forwards;
+}
+
+/* Invite card glow */
+@keyframes invite-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.3), 0 0 40px rgba(168, 85, 247, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(74, 222, 128, 0.6), 0 0 60px rgba(168, 85, 247, 0.4);
+  }
+}
+.animate-invite-glow {
+  animation: invite-glow 2s ease-in-out infinite;
+}
+
+/* Slide-in for screens */
+@keyframes screen-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-screen-in {
+  animation: screen-slide-in 0.3s ease-out forwards;
+}
+
+/* Heart pop */
+@keyframes heart-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-heart-pop {
+  animation: heart-pop 0.35s ease-out;
+}
+
+@keyframes reel-heart {
+  0% {
+    opacity: 0;
+    transform: scale(0.25) rotate(-18deg);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1.15) rotate(8deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+.animate-reel-heart {
+  animation: reel-heart 0.9s ease-out forwards;
+}
+
+@keyframes reel-transition {
+  from {
+    opacity: 0.9;
+    transform: scale(1.008);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-reel-transition {
+  animation: reel-transition 450ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.reel-scroll-card {
+  will-change: transform, opacity;
+  transition: transform 100ms linear, opacity 100ms linear;
+}
+
+/* Streak recovery shine */
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+.animate-shine {
+  background-size: 200% auto;
+  animation: shine 2s linear infinite;
+}
+
+/* Comment slide in from top of list */
+@keyframes comment-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-comment-in {
+  animation: comment-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Follow button neon ripple */
+@keyframes follow-ripple {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+.animate-follow-ripple {
+  animation: follow-ripple 0.6s ease-out forwards;
+}
+
+/* Follow button glow transition */
+@keyframes following-glow {
+  0% {
+    box-shadow: 0 0 0px rgba(74, 222, 128, 0);
+  }
+  40% {
+    box-shadow: 0 0 16px rgba(74, 222, 128, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(74, 222, 128, 0);
+  }
+}
+.animate-following-glow {
+  animation: following-glow 0.8s ease-out forwards;
+}
+
+/* Overlay slide in from right */
+@keyframes overlay-in {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-overlay-in {
+  animation: overlay-in 0.28s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* Chat message pop */
+@keyframes msg-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-msg-in {
+  animation: msg-in 0.25s ease-out forwards;
+}
+
+@keyframes story-progress-fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.story-progress-fill {
+  animation: story-progress-fill 30s linear forwards;
+}
+
+/* Toggle switch */
+@keyframes toggle-on {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(18px);
+  }
+}
+.animate-toggle-on {
+  animation: toggle-on 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
